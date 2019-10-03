@@ -5,9 +5,8 @@ class Search extends Component {
         text: ''
     }
 
-    onChange = (e) => {
-        this.setState({[e.target.name]: e.target.value})
-    }
+    onChange = (e) => this.setState({ text: e.target.value })
+    
 
     onSubmit = (e) => {
         e.preventDefault();
@@ -17,7 +16,7 @@ class Search extends Component {
     render() {
         return (
             <div>
-                <form onSubmit ={this.onSubmit}>
+                <form onSubmit={this.onSubmit}>
                     <input
                         type="text"
                         name="locationSearch"
@@ -25,7 +24,7 @@ class Search extends Component {
                         value={this.state.text}
                         onChange={this.onChange}
                     />
-                    <input type="Submit" value='Search' />
+                    <input type="submit" value="Search"/>
                 </form>
             </div>
         )
