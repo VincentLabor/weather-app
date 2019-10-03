@@ -1,26 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {Component} from 'react';
+import Navbar from './Components/layout/Navbar';
+import Search from './Components/Locations/Search';
+import axios from 'axios';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+
+searchLocations = async locations =>{
+  console.log(locations)
+  const res = await axios.get(`http://api.openweathermap.org/data/2.5/forecast?id=524901&APPID=${process.env.REACT_APP_API_KEY}`)
+  console.log(res)
 }
+
+  render(){
+
+    return (
+      <div className="">
+        <Navbar title='Weather App' />
+        <div className="container flex">
+            <Search searchLocations={this.searchLocations}/>
+        </div>
+        </div>
+      );
+  }
+
+}
+
+
 
 export default App;
