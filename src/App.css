@@ -25,6 +25,7 @@ body {
 
 .flex{
   display: flex;
+  justify-content: space-between;
 }
 
 .left{
@@ -37,4 +38,46 @@ body {
  height: 100%;
 }
 
+.container{
+  width: 1100px;
+  margin: auto;
+  overflow: hidden;
+  padding: 4em;
+}
+
+.pad{
+  border-radius: 15px;
+  padding: .6em;
+  border: 1px solid gray;
+  margin: 2em;
+}
+
+.searchBtn{
+  padding: .6em;
+  border-radius: 15px;
+  border: 1px solid gray;
+  width: 100px;
+}
+
 /*Search CSS*/
+.cityWeather p{
+padding: 1em;
+}
+
+.btn{
+  margin-top: 1em;
+  background: red;
+  border: none;
+  width: 100px;
+  padding: .6em;
+  border-radius: 15px;
+  cursor: pointer;
+  margin: 1em;
+  display: block;
+  height: 18%;
+  text-align: center;
+}
+
+.cityWeather{
+  border: 1px solid black;
+}
