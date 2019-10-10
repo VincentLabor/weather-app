@@ -29,7 +29,6 @@ const App = () => {
   }
 
   const clearUsers = () => {
-
     setCity('');
     setCountry('');
     setCurrentTempMin('');
@@ -37,10 +36,11 @@ const App = () => {
     setTemp('');
     setLoading('false');
     createAlert(null);
+    setLoading(false);
   }
 
-  const setAlert = (msg, type) => {
-    createAlert({ alert: {msg, type} })
+  const setAlert = (type) => {
+    createAlert(type)
   }
 
   return (
@@ -50,6 +50,7 @@ const App = () => {
       <div className="container flex">
         <Search searchLocations={searchLocations} showClear={city.length > 1 ? true : false} clearUsers={clearUsers} setAlert={setAlert} />
         <CityWeather
+        loading={loading}
           city={city}
           country={country}
           currentTempMax={currentTempMax}

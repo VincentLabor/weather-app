@@ -2,8 +2,7 @@ import React from 'react'
 
 const Alert = ({ alert }) => {
     return (
-
-        alert && <div className={alert && alert.type}>{alert.msg}</div>
+        alert && <div className='alert'>Please enter a city</div>
     )
 }
 

@@ -9,7 +9,7 @@ const Search = ({ showClear, clearUsers, setAlert, searchLocations }) => { //Ins
     const onSubmit = (e) => {
         e.preventDefault();
         if (text === '') {
-            setAlert('Please enter a value', 'alert')
+            setAlert('alert')
         } else {
             searchLocations(text);
             setText('')
