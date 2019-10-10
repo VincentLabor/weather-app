@@ -1,68 +1,65 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import Navbar from './Components/layout/Navbar';
 import Search from './Components/Locations/Search';
 import axios from 'axios'; // You have to install axios on your own.
 import CityWeather from './Components/Locations/CityWeather';
 import './App.css';
+import Alert from './Components/layout/Alert';
 
-class App extends Component {
+const App = () => {
 
-  state = { //This will represent the information that we wish to grab from the API.
-    city: '',
-    country: '',
-    currentTempMin: '',
-    currentTempMax: '',
-    temp: '',
-    loading: false
-  }
+  const [city, setCity] = useState('');
+  const [country, setCountry] = useState('');
+  const [currentTempMin, setCurrentTempMin] = useState('');
+  const [currentTempMax, setCurrentTempMax] = useState('');
+  const [temp, setTemp] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [alert, createAlert] = useState(null);
 
-  searchLocations = async locations => {
-    this.setState({ loading: true });
+  const searchLocations = async locations => {
+    setLoading(true);
     const res = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${locations}&units=imperial&appid=${process.env.REACT_APP_API_KEY}`) //Don't forget about the https://
     console.log(res)
-    this.setState({
-      city: res.data.name,
-      country: res.data.sys.country,
-      currentTempMin: res.data.main.temp_min,
-      currentTempMax: res.data.main.temp_max,
-      temp: res.data.main.temp,
-      loading: false
-    })
+    setCity(res.data.name)
+    setCountry(res.data.sys.country)
+    setCurrentTempMin(res.data.main.temp_min)
+    setCurrentTempMax(res.data.main.temp_max)
+    setTemp(res.data.main.temp)
+    setLoading(false)
   }
 
-  clearUsers = () => {
-    this.setState({
-      city: '',
-      country: '',
-      currentTempMin: '',
-      currentTempMax: '',
-      temp: '',
-      loading: false
-    })
+  const clearUsers = () => {
+
+    setCity('');
+    setCountry('');
+    setCurrentTempMin('');
+    setCurrentTempMax('');
+    setTemp('');
+    setLoading('false');
+    createAlert(null);
   }
 
-  render() {
+  const setAlert = (msg, type) => {
+    createAlert({ alert: {msg, type} })
+  }
 
-    const { city, country, currentTempMax, currentTempMin, temp } = this.state;
-
-    return (
-      <div>
-        <Navbar title='Weather App' />
-        <div className="container flex">
-          <Search searchLocations={this.searchLocations} showClear={city.length > 1 ? true : false} clearUsers={this.clearUsers}/>
-          <CityWeather
-            city={city}
-            country={country}
-            currentTempMax={currentTempMax}
-            currentTempMin={currentTempMin}
-            temp={temp}
-            showClass={city.length > 1 ? true : false}
-          />
-        </div>
+  return (
+    <div>
+      <Navbar title='Weather App' />
+      <Alert alert={alert} />
+      <div className="container flex">
+        <Search searchLocations={searchLocations} showClear={city.length > 1 ? true : false} clearUsers={clearUsers} setAlert={setAlert} />
+        <CityWeather
+          city={city}
+          country={country}
+          currentTempMax={currentTempMax}
+          currentTempMin={currentTempMin}
+          temp={temp}
+          showClass={city.length > 1 ? true : false}
+        />
       </div>
-    );
-  }
-
+    </div>
+  );
 }
 
 

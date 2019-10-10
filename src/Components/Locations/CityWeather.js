@@ -1,5 +1,6 @@
 import React from 'react'
 import Spinner from '../layout/Spinner';
+import Sun from './sun.svg';
 
 const CityWeather = ({city, country, currentTempMin, currentTempMax, temp, loading, showClass}) => {
 
@@ -8,6 +9,7 @@ const CityWeather = ({city, country, currentTempMin, currentTempMax, temp, loadi
     }
     return (
         <div className={showClass ? "cityWeather" : null}>
+            <img src={Sun} className='sun'/>
            {city && country && <p>Location: {city}, {country}</p> } {/*This allows us to conditionally show the traits of the city.*/}
            {currentTempMin && <p>Lows: {currentTempMin}</p> }
            {currentTempMax && <p>Highs: {currentTempMax}</p>}
@@ -16,5 +18,4 @@ const CityWeather = ({city, country, currentTempMin, currentTempMax, temp, loadi
     )
 }
 
-export default CityWeather
-{}
+export default CityWeather;
