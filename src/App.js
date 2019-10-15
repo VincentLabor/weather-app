@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
 import Navbar from './Components/layout/Navbar';
 import axios from 'axios'; // You have to install axios on your own.
 import Home from './Components/Pages/Home';
+import Search from './Components/Locations/Search';
+import CityWeather from './Components/Locations/CityWeather';
 import './App.css';
 import Alert from './Components/layout/Alert';
 import About from './Components/Pages/About';
-import { BrowserRouter as Router, Switch, Link, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Link, Route, render } from 'react-router-dom';
 
 const App = () => {
 
@@ -50,15 +52,14 @@ const App = () => {
         <Navbar title='Weather App' />
         <Alert alert={alert} />
         <div className="container flex">
-
-
           <Switch>
-            <Route exact path='/' component={Home}/>
-              
-            <Route exact path='/about' component={About}/>
-              
-  
-
+            <Route exact path='/' /*component={Home}*/ render={props => (
+              <Fragment>
+                <Search clearUsers={clearUsers} searchLocations={searchLocations} setAlert={setAlert} />
+                <CityWeather city={city} country={country} currentTempMin={currentTempMin} currentTempMax={currentTempMax} temp={temp} loading={loading} />
+              </Fragment>
+            )} />
+            <Route exact path='/about' component={About} />
           </Switch>
         </div>
       </div>

@@ -5,9 +5,8 @@ import CityWeather from '../Locations/CityWeather'
 const Home = (props) => {
     return (
         <Fragment>
-            <h1>Red</h1>
             <Search/>
-            <CityWeather/>
+            <CityWeather city={this.props.city}/>
         </Fragment>
     )
 }
