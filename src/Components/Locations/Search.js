@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 
-const Search = ({ showClear, clearUsers, setAlert, searchLocations }) => { //Inside of the arguments are props
+const Search = ({ showClear, clearUsers, createAlert, searchLocations }) => { //Inside of the arguments are props
     const [text, setText] = useState(''); //Inside of the parenthesees is the value of the text currently. 
-    const [alert, createAlert] = useState('')
+    
 
     const onChange = (e) => setText(e.target.value)
 
     const onSubmit = (e) => {
         e.preventDefault();
         if (text === '') {
-            setAlert('alert')
+            createAlert('alert')
         } else {
             searchLocations(text);
             setText('')
@@ -32,7 +32,6 @@ const Search = ({ showClear, clearUsers, setAlert, searchLocations }) => { //Ins
             {showClear && <div className='btn' onClick={clearUsers}>Clear</div>}
         </div>
     )
-
 }
 
 export default Search;

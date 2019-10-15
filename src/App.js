@@ -38,24 +38,27 @@ const App = () => {
     setCurrentTempMax('');
     setTemp('');
     setLoading('false');
-    createAlert(null);
+    setAlert(null);
     setLoading(false);
   }
 
   const createAlert = (type) => {
-    createAlert(type)
+    // createAlert(type)
+    setAlert(type)
+
+    setTimeout(()=> setAlert(null),5000)
   }
 
   return (
     <Router>
       <div>
         <Navbar title='Weather App' />
-        <Alert alert={alert} />
+        <Alert alert={alert} createAlert={createAlert}/>
         <div className="container flex">
           <Switch>
             <Route exact path='/' /*component={Home}*/ render={props => (
               <Fragment>
-                <Search clearUsers={clearUsers} searchLocations={searchLocations} setAlert={setAlert} />
+                <Search clearUsers={clearUsers} searchLocations={searchLocations} createAlert={createAlert} />
                 <CityWeather city={city} country={country} currentTempMin={currentTempMin} currentTempMax={currentTempMax} temp={temp} loading={loading} />
               </Fragment>
             )} />
