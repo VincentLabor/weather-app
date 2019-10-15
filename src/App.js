@@ -1,7 +1,6 @@
 import React, { useState, Fragment } from 'react';
 import Navbar from './Components/layout/Navbar';
 import axios from 'axios'; // You have to install axios on your own.
-import Home from './Components/Pages/Home';
 import Search from './Components/Locations/Search';
 import CityWeather from './Components/Locations/CityWeather';
 import './App.css';
@@ -10,7 +9,6 @@ import About from './Components/Pages/About';
 import { BrowserRouter as Router, Switch, Link, Route, render } from 'react-router-dom';
 
 const App = () => {
-
   const [city, setCity] = useState('');
   const [country, setCountry] = useState('');
   const [currentTempMin, setCurrentTempMin] = useState('');
@@ -43,23 +41,27 @@ const App = () => {
   }
 
   const createAlert = (type) => {
-    // createAlert(type)
-    setAlert(type)
-
-    setTimeout(()=> setAlert(null),5000)
+    setAlert(type);
+    setTimeout(() => setAlert(null), 5000);
   }
 
   return (
     <Router>
       <div>
         <Navbar title='Weather App' />
-        <Alert alert={alert} createAlert={createAlert}/>
+        <Alert alert={alert} createAlert={createAlert} />
         <div className="container flex">
           <Switch>
             <Route exact path='/' /*component={Home}*/ render={props => (
               <Fragment>
-                <Search clearUsers={clearUsers} searchLocations={searchLocations} createAlert={createAlert} />
-                <CityWeather city={city} country={country} currentTempMin={currentTempMin} currentTempMax={currentTempMax} temp={temp} loading={loading} />
+                <Search clearUsers={clearUsers} searchLocations={searchLocations} createAlert={createAlert} showClear={city.length > 0 ? true : false} />
+                <CityWeather city={city}
+                  country={country}
+                  currentTempMin={currentTempMin}
+                  currentTempMax={currentTempMax}
+                  temp={temp}
+                  loading={loading}
+                />
               </Fragment>
             )} />
             <Route exact path='/about' component={About} />
