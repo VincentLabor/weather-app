@@ -94,3 +94,28 @@ padding: 1em;
   padding: 4em;
   background: silver;
 }
+
+.navbar{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.flex{
+  display: flex;
+}
+
+
+
+li{
+  list-style-type: none;
+}
+
+.page{
+  padding: 0 2em;
+}
+
+.navbar a{
+  text-decoration: none;
+  color: white;
+}

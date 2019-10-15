@@ -1,9 +1,20 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
- function Navbar({title}) {
+function Navbar({ title }) {
     return (
         <nav className='navbar bg-blue'>
-        {title}
+            {title}
+            <ul className="flex">
+                <li className="page">
+                    <Link to="/">Home</Link>
+                </li>
+
+                
+                <li className="page">
+                    <Link to="/about">About</Link>
+                </li>
+            </ul>
         </nav>
     )
 }

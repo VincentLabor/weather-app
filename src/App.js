@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import Navbar from './Components/layout/Navbar';
-import Search from './Components/Locations/Search';
 import axios from 'axios'; // You have to install axios on your own.
-import CityWeather from './Components/Locations/CityWeather';
+import Home from './Components/Pages/Home';
 import './App.css';
 import Alert from './Components/layout/Alert';
+import About from './Components/Pages/About';
+import { BrowserRouter as Router, Switch, Link, Route } from 'react-router-dom';
 
 const App = () => {
 
@@ -44,22 +45,24 @@ const App = () => {
   }
 
   return (
-    <div>
-      <Navbar title='Weather App' />
-      <Alert alert={alert} />
-      <div className="container flex">
-        <Search searchLocations={searchLocations} showClear={city.length > 1 ? true : false} clearUsers={clearUsers} setAlert={setAlert} />
-        <CityWeather
-        loading={loading}
-          city={city}
-          country={country}
-          currentTempMax={currentTempMax}
-          currentTempMin={currentTempMin}
-          temp={temp}
-          showClass={city.length > 1 ? true : false}
-        />
+    <Router>
+      <div>
+        <Navbar title='Weather App' />
+        <Alert alert={alert} />
+        <div className="container flex">
+
+
+          <Switch>
+            <Route exact path='/' component={Home}/>
+              
+            <Route exact path='/about' component={About}/>
+              
+  
+
+          </Switch>
+        </div>
       </div>
-    </div>
+    </Router>
   );
 }
 

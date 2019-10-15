@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Spinner from '../layout/Spinner';
 
 const Search = ({ showClear, clearUsers, setAlert, searchLocations }) => { //Inside of the arguments are props
     const [text, setText] = useState(''); //Inside of the parenthesees is the value of the text currently. 
