@@ -17,7 +17,7 @@ const App = () => {
   const [currentTempMax, setCurrentTempMax] = useState('');
   const [temp, setTemp] = useState('');
   const [loading, setLoading] = useState(false);
-  const [alert, createAlert] = useState(null);
+  const [alert, setAlert] = useState(null);
 
   const searchLocations = async locations => {
     setLoading(true);
@@ -42,7 +42,7 @@ const App = () => {
     setLoading(false);
   }
 
-  const setAlert = (type) => {
+  const createAlert = (type) => {
     createAlert(type)
   }
 
